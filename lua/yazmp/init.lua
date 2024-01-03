@@ -27,9 +27,19 @@ function M.zenmode(c)
 		create_window(width, "L")
 
 		vim.api.nvim_set_current_win(cur_win)
+    vim.g.zenmode = 1
 	else
 		vim.api.nvim_buf_delete(M.buf, { force = true })
 		M.buf = nil
+    vim.g.zenmode = 0
+	end
+end
+
+function M.closezenmode()
+	if M.buf ~= nil then
+		vim.api.nvim_buf_delete(M.buf, { force = true })
+		M.buf = nil
+    vim.g.zenmode = 0
 	end
 end
 
